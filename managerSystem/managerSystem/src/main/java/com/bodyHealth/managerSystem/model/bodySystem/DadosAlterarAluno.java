@@ -1,4 +1,4 @@
 package com.bodyHealth.managerSystem.model.bodySystem;
 
-public record DadosAlterarAluno() {
+public record DadosAlterarAluno(Long id,float altura,float peso, String nome) {
 }

@@ -29,8 +29,8 @@ public class professorController {
     @PostMapping
     public String cadastraProfesssor(DadosProfessor dados) {
        Professor professor = new Professor(dados);
-        repository.save(professor);
-        return "redirect:/professor/cadastro";
+       repository.save(professor);
+       return "redirect:/professor/cadastro";
     }
 
     @GetMapping("/listagem")
@@ -50,8 +50,8 @@ public class professorController {
     @PutMapping
     @Transactional
     public String alterar(DadosAlterarProfessor dados){
-        Professor professor = repository.getReferenceById(dados.professorId());
-        professor.atualizaDados(dados);
+        Professor professor = repository.getReferenceById(dados.id());
+        professor.AtualizarProfessor(dados);
         return "redirect:/professor/cadastro";
     }
 

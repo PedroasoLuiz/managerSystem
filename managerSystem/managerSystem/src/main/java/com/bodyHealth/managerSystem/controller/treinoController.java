@@ -20,8 +20,8 @@ public class treinoController {
     public String getView(Long treinoId, Model model) {
         if(treinoId != null)
         {
-            Treino treino = repository.getReferenceById(treinoId);
-            model.addAttribute("treino",treino);
+            //Treino treino = repository.getReferenceById(treinoId);
+            //model.addAttribute("treino",treino);
         }
 
         return "treino/cadastro";
@@ -29,30 +29,30 @@ public class treinoController {
 
     @PostMapping
     public String cadastraTreino(DadosTreino dados) {
-        Treino treino = new Treino(dados);
-        repository.save(treino);
+        //Treino treino = new Treino(dados);
+        //repository.save(treino);
         return "redirect:/treino/cadastro";
     }
 
     @GetMapping("/listagem")
     public String carregaListagem(Model model)
     {
-        model.addAttribute("lista",repository.getAll());
+        //model.addAttribute("lista",repository.getAll());
         return "treino/listagem";
     }
 
     @DeleteMapping
     @Transactional
     public String delete(Long treinoId){
-        repository.deleteById(treinoId);
+        //repository.deleteById(treinoId);
         return "redirect:/treino/listagem";
     }
 
     @PutMapping
     @Transactional
     public String alterar(DadosAlterarTreino dados){
-        Treino treino = repository.getReferenceById(dados.treinoId());
-        treino.atualizaDados(dados);
+//        Treino treino = repository.getReferenceById(dados.treinoId());
+//        treino.atualizaDados(dados);
         return "redirect:/treino/cadastro";
     }
 }

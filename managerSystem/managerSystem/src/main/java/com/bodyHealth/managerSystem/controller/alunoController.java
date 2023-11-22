@@ -37,7 +37,7 @@ public class alunoController {
     @GetMapping("/listagem")
     public String carregaListagem(Model model)
     {
-        model.addAttribute("lista",repository.findAllAluno(Sort.by(Sort.Direction.DESC, "alunoId")));
+        model.addAttribute("lista",repository.findAllAlunos(Sort.by(Sort.Direction.DESC, "alunoId")));
         return "aluno/listagem";
     }
 
@@ -51,8 +51,8 @@ public class alunoController {
     @PutMapping
     @Transactional
     public String alterar(DadosAlterarAluno dados){
-        Aluno aluno = repository.getReferenceById(dados.alunoId());
-        aluno.atualizaDados(dados);
+        Aluno aluno = repository.getReferenceById(dados.id());
+        aluno.AtualizarAluno(dados);
         return "redirect:/aluno/cadastro";
     }
 }

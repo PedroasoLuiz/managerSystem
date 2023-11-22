@@ -1,4 +1,4 @@
 package com.bodyHealth.managerSystem.model.bodySystem;
 
-public record DadosProfessor() {
+public record DadosProfessor(String nome, String categoria) {
 }
