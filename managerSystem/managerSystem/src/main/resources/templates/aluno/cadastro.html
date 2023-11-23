@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-family: monospace;" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,17 +56,23 @@
 </head>
 <body>
 <h1>Cadastro de Aluno</h1>
-<form action="cadastrarAluno" method="post">
+<form action="/aluno" method="post">
+
+    <input type="hidden" name="_method" value="put" th:if="${aluno!=null}">
+    <input type="hidden" name="id" th:value="${aluno?.getId()}">
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required>
+
+    <input type="text" id="nome" name="nome" th:value="${aluno?.nome}" required>
 
     <label for="peso">Peso (kg):</label>
-    <input type="number" id="peso" name="peso" required>
+    <input type="number" id="peso" name="peso" th:value="${aluno?.peso}" required>
 
     <label for="altura">Altura (cm):</label>
-    <input type="number" id="altura" name="altura" required>
+    <input type="number" id="altura" name="altura" th:value="${aluno?.altura}" required>
 
-    <button type="submit">Cadastrar</button>
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #1a871d; height: 30px; width: 100px;" type="submit" value="cadastrar" th:if="${aluno==null}">
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #2d437e; height: 30px; width: 100px;" type="submit" value="AtualizarAluno" th:if="${aluno!=null}">
+
 </form>
 </body>
 </html>

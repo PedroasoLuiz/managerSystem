@@ -34,6 +34,10 @@ public class Professor {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public Professor(){
+
+    }
     public Professor(String nome, String categoria) {
         this.nome = nome;
         this.categoria = categoria;

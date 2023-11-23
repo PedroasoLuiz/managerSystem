@@ -18,10 +18,10 @@ public class alunoController {
     private AlunoRepository repository;
 
     @GetMapping("/cadastro")
-    public String getView(Long alunoId,Model model){
-        if (alunoId != null)
+    public String getView(Long id,Model model){
+        if (id != null)
         {
-            Aluno aluno = repository.getReferenceById(alunoId);
+            Aluno aluno = repository.getReferenceById(id);
             model.addAttribute("aluno",aluno);
         }
         return "aluno/cadastro";
@@ -31,20 +31,20 @@ public class alunoController {
     public String cadastrarAluno(DadosAluno dados){
         Aluno aluno = new Aluno(dados);
         repository.save(aluno);
-        return "redirect:/aluno/cadastro";
+        return "redirect:/aluno/listagem";
     }
 
     @GetMapping("/listagem")
     public String carregaListagem(Model model)
     {
-        model.addAttribute("lista",repository.findAllAlunos(Sort.by(Sort.Direction.DESC, "alunoId")));
+        model.addAttribute("lista",repository.findAllAlunos(Sort.by(Sort.Direction.DESC, "Id")));
         return "aluno/listagem";
     }
 
     @DeleteMapping
     @Transactional
-    public String delete(Long alunoId){
-        repository.deleteById(alunoId);
+    public String delete(Long id){
+        repository.deleteById(id);
         return "redirect:/aluno/listagem";
     }
 
@@ -53,6 +53,6 @@ public class alunoController {
     public String alterar(DadosAlterarAluno dados){
         Aluno aluno = repository.getReferenceById(dados.id());
         aluno.AtualizarAluno(dados);
-        return "redirect:/aluno/cadastro";
+        return "redirect:/aluno/listagem";
     }
 }

@@ -30,7 +30,7 @@ public class professorController {
     public String cadastraProfesssor(DadosProfessor dados) {
        Professor professor = new Professor(dados);
        repository.save(professor);
-       return "redirect:/professor/cadastro";
+       return "redirect:/professor/listagem";
     }
 
     @GetMapping("/listagem")
@@ -42,8 +42,8 @@ public class professorController {
 
     @DeleteMapping
     @Transactional
-    public String delete(Long professorId){
-        repository.deleteById(professorId);
+    public String delete(Long id){
+        repository.deleteById(id);
         return "redirect:/professor/listagem";
     }
 
@@ -52,17 +52,17 @@ public class professorController {
     public String alterar(DadosAlterarProfessor dados){
         Professor professor = repository.getReferenceById(dados.id());
         professor.AtualizarProfessor(dados);
-        return "redirect:/professor/cadastro";
+        return "redirect:/professor/listagem";
     }
 
-//    @GetMapping("/professor")
-//    public String viewMarca(String prof, Model model){
-//        if (prof != ""){
-//            model.addAttribute("lista",repository.findByMarca(marca));
-//        }else {
-//            return "redirect:/veiculo/listagem";
-//        }
-//
-//        return "veiculo/listagem";
-//    }
+    @GetMapping("/professor")
+    public String viewCategoria(String categoria, Model model){
+        if (categoria != ""){
+            model.addAttribute("lista",repository.findByCategoria(categoria));
+        }else {
+            return "redirect:/professor/listagem";
+        }
+
+        return "professor/listagem";
+    }
 }

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 public interface AlunoRepository extends JpaRepository<Aluno,Long>{
     List<Aluno> findByNome(String nome);
-    @Query("SELECT * FROM aluno")
+    @Query("SELECT a FROM Aluno a")
     List<Aluno>findAllAlunos(Sort sort);
 }
