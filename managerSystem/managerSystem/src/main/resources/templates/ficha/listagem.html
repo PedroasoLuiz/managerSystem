@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      style="font-family: monospace;"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Treino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .data {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ficha de Treino</h1>
+</header>
+
+<div class="container">
+
+    <div class="info-card">
+        <h2>Aluno</h2>
+        <div class="data">
+            <div>
+                <label for="aluno">Nome</label>
+                <select id="aluno" name="aluno">
+                    <option value="">Selecione o aluno</option>
+                    <th:block th:each="aluno:${listaAluno}">
+                        <option th:value="${aluno.id}" th:text="${aluno.nome}"></option>
+
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <div class="data">
+            <span class="label">Idade:</span> 25 anos
+        </div>
+        <div class="data">
+            <span class="label">Altura:</span> 1.75m
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h2>Professor</h2>
+        <div class="data">
+            <span class="label">Nome:</span> Maria Oliveira
+        </div>
+        <div class="data">
+            <span class="label">Especialidade:</span> Musculação
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h2>Treino</h2>
+        <div class="data">
+            <span class="label">Data:</span> 01/12/2023
+        </div>
+        <div class="data">
+            <span class="label">Exercícios:</span>
+            <table style="width: 100%; max-width: 1000px; border: 1px solid #EEEEEE;border-radius:15px">
+                <thead>
+                <tr style="display: flex;width: 100%; background: #F7A824; padding: 18px 0;border-radius:15px">
+                    <th style="flex: 1 1 20%; text-align: center; color:white;">ID</th>
+                    <th style="flex: 1 1 20%; text-align: center; color:white;">Descrição</th>
+                    <th style="flex: 1 1 20%; text-align: center; color:white;">Repetição</th>
+                    <th style="flex: 1 1 20%; text-align: center; color:white;">Tempo</th>
+                    <th style="flex: 1 1 20%; text-align: center; color:white;"></th>
+                    <th style="flex: 1 1 20%; text-align: center; color:white;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ficha : ${lista}" style="display: flex; width: 100%; padding: 18px 0;">
+                    <td th:text="${ficha.id}" style="flex: 1 1 20%; text-align: center; word-break: break-word;"></td>
+                    <td th:text="${ficha.nome}" style="flex: 1 1 20%; text-align: center; word-break: break-word;"></td>
+                    <td th:text="${ficha.repeticao}" style="flex: 1 1 20%; text-align: center; word-break: break-word;"></td>
+                    <td th:text="${ficha.tempo}" style="flex: 1 1 20%; text-align: center; word-break: break-word;"></td>
+                    <td style="flex: 1 1 20%; text-align: center;">
+                        <form action="/ficha/cadastro" method="get">
+                            <input type="hidden" name="id" th:value="${ficha.getId()}">
+                            <input type="submit" value="Editar" style="cursor:pointer; width: 50px; color: white; background: #2d437e; border: none; border-radius: 5px; padding: 5px; text-align: center;">
+                        </form>
+                    </td>
+                    <td style="flex: 1 1 20%; text-align: center;">
+                        <form action="/ficha" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="id" th:value="${ficha.getId()}">
+                            <input type="submit" value="Excluir" style="cursor:pointer; width: 50px; color: white; background: #bb1616; border: none; border-radius: 5px; padding: 5px; text-align: center;">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2023 Ficha de Treino
+</footer>
+
+</body>
+</html>

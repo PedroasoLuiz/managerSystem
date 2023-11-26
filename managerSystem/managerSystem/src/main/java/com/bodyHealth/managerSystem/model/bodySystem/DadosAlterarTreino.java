@@ -1,4 +1,7 @@
 package com.bodyHealth.managerSystem.model.bodySystem;
 
-public record DadosAlterarTreino() {
+import java.sql.Time;
+import java.time.LocalTime;
+
+public record DadosAlterarTreino(Long id, LocalTime tempo, int repeticao, String nome) {
 }

@@ -5,7 +5,6 @@ import com.bodyHealth.managerSystem.model.bodySystem.Treino;
 import com.bodyHealth.managerSystem.model.bodySystem.TreinoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +15,12 @@ public class treinoController {
     @Autowired
     private TreinoRepository repository;
 
-    @GetMapping("/treino")
-    public String getView(Long treinoId, Model model) {
-        if(treinoId != null)
+    @GetMapping("/cadastro")
+    public String getView(Long id, Model model) {
+        if(id != null)
         {
-            //Treino treino = repository.getReferenceById(treinoId);
-            //model.addAttribute("treino",treino);
+            Treino treino = repository.getReferenceById(id);
+            model.addAttribute("treino",treino);
         }
 
         return "treino/cadastro";
@@ -29,30 +28,30 @@ public class treinoController {
 
     @PostMapping
     public String cadastraTreino(DadosTreino dados) {
-        //Treino treino = new Treino(dados);
-        //repository.save(treino);
+        Treino treino = new Treino(dados);
+        repository.save(treino);
         return "redirect:/treino/cadastro";
     }
 
     @GetMapping("/listagem")
     public String carregaListagem(Model model)
     {
-        //model.addAttribute("lista",repository.getAll());
+        model.addAttribute("lista",repository.getAll());
         return "treino/listagem";
     }
 
     @DeleteMapping
     @Transactional
-    public String delete(Long treinoId){
-        //repository.deleteById(treinoId);
+    public String delete(Long id){
+        repository.deleteById(id);
         return "redirect:/treino/listagem";
     }
 
     @PutMapping
     @Transactional
     public String alterar(DadosAlterarTreino dados){
-//        Treino treino = repository.getReferenceById(dados.treinoId());
-//        treino.atualizaDados(dados);
-        return "redirect:/treino/cadastro";
+        Treino treino = repository.getReferenceById(dados.id());
+        treino.AtualizarTreino(dados);
+        return "redirect:/treino/listagem";
     }
 }

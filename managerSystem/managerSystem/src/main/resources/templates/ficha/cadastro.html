@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Treino</title>
+    <title>Cadastrar ficha de treino</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,23 +92,23 @@
     </style>
 </head>
 <body>
-<h1>Cadastrar Treino</h1>
-<form action="/treino" method="post">
+<h1>Cadastrar ficha de treino</h1>
+<form action="/ficha" method="post">
 
-    <input type="hidden" name="_method" value="put" th:if="${treino!=null}">
-    <input type="hidden" name="id" th:value="${treino?.getId()}">
+    <input type="hidden" name="_method" value="put" th:if="${ficha!=null}">
+    <input type="hidden" name="id" th:value="${ficha?.getId()}">
 
     <label for="nome">Nome:</label>
-    <center><input class="inputAnimado" type="text" id="nome" name="nome" th:value="${treino?.nome}" required></center>
+    <center><input class="inputAnimado" type="text" id="nome" name="nome" th:value="${ficha?.nome}" required></center>
 
     <label for="repeticao">Repetições:</label>
-    <center><input class="inputAnimado" type="number" id="repeticao" name="repeticao" th:value="${treino?.repeticao}" required></center>
+    <center><input class="inputAnimado" type="number" id="repeticao" name="repeticao" th:value="${ficha?.repeticao}" required></center>
 
     <label for="tempo">Tempo de duração:</label>
-    <center><input class="inputAnimado" type="time" id="tempo" name="tempo" th:value="${treino?.tempo}" required></center>
+    <center><input class="inputAnimado" type="time" id="tempo" name="tempo" th:value="${ficha?.tempo}" required></center>
 
-    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #1a871d; height: 30px; width: 100px;" type="submit" value="Cadastrar" th:if="${treino==null}">
-    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #2d437e; height: 30px; width: 100px;" type="submit" value="Atualizar" th:if="${treino!=null}">
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #1a871d; height: 30px; width: 100px;" type="submit" value="Cadastrar" th:if="${ficha==null}">
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #2d437e; height: 30px; width: 100px;" type="submit" value="Atualizar" th:if="${ficha!=null}">
 
 </form>
 </body>

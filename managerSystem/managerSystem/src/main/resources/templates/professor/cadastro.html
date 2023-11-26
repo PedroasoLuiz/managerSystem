@@ -21,7 +21,7 @@
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -29,14 +29,47 @@
             display: block;
             margin-bottom: 8px;
             color: #333;
+
         }
 
         input {
-            width: 100%;
+            width: 20em;
             padding: 8px;
             margin-bottom: 16px;
             box-sizing: border-box;
         }
+        .inputAnimado{
+            margin: 10px 25px;
+            display: block;
+            border: none;
+            padding: 10px 0;
+            border-bottom: solid 1px #F7A824;
+            -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+            transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #F7A824 4%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #F7A824 4%);
+            background-position: -23em 0;
+            background-size: 20em 100%;
+            background-repeat: no-repeat;
+            color: rgb(140,140,140)}
+
+        .inputAnimado:focus,
+            .inputAnimado:valid {
+                box-shadow: none;
+                outline: none;
+                background-position: 0 0;}
+
+        .inputAnimado::-webkit-input-placeholder {
+            font-family: 'Montserrat', sans-serif;
+            -webkit-transition: all 0.3 sease-in-out;
+            transition: all 0.3s ease-in-out;}
+
+        .inputAnimado:focus::-webkit-input-placeholder,
+            .inputAnimado:valid::-webkit-input-placeholder {
+                color: #F7A824; font-size: 11px;
+                -webkit-transform: translateY(-20px);
+                transform: translateY(-20px);
+                visibility: visible !important;}
 
         button {
             background-color: #4CAF50;
@@ -47,6 +80,10 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        button::first-letter {
+            text-transform:uppercase;
         }
 
         button:hover {
@@ -61,13 +98,13 @@
     <input type="hidden" name="_method" value="put" th:if="${professor!=null}">
     <input type="hidden" name="id" th:value="${professor?.getId()}">
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" th:value="${professor?.nome}" required>
+    <center><input class="inputAnimado" type="text" id="nome" name="nome" th:value="${professor?.nome}" required></center>
 
     <label for="categoria">Categoria:</label>
-    <input type="text" id="categoria" name="categoria" th:value="${professor?.categoria}" required>
+    <center><input class="inputAnimado" type="text" id="categoria" name="categoria" th:value="${professor?.categoria}" required></center>
 
-    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #1a871d; height: 30px; width: 100px;" type="submit" value="cadastrar" th:if="${professor==null}">
-    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #2d437e; height: 30px; width: 100px;" type="submit" value="AtualizarProfessor" th:if="${professor!=null}">
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #1a871d; height: 30px; width: 100px;" type="submit" value="Cadastrar" th:if="${professor==null}">
+    <input style="margin-top: 20px; border-radius: 10px; border: none; color: white; background-color: #2d437e; height: 30px; width: 100px;" type="submit" value="Atualizar" th:if="${professor!=null}">
 
 </form>
 </body>

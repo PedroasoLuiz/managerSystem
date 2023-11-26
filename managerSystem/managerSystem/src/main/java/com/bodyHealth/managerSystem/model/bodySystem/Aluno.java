@@ -25,14 +25,7 @@ public class Aluno {
 
     private String nome;
 
-    public Aluno() {
-    }
 
-    public Aluno(float peso, float altura, String Nome) {
-        this.peso = peso;
-        this.altura = altura;
-        this.nome = Nome;
-    }
 
     public Long getId() {
         return id;
@@ -68,5 +61,13 @@ public class Aluno {
         this.peso = dados.peso();
         this.altura = dados.altura();
         this.nome = dados.nome();
+    }
+    public Aluno() {
+    }
+
+    public Aluno(float peso, float altura, String Nome) {
+        this.peso = peso;
+        this.altura = altura;
+        this.nome = Nome;
     }
 }

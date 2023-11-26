@@ -37,7 +37,7 @@ public class alunoController {
     @GetMapping("/listagem")
     public String carregaListagem(Model model)
     {
-        model.addAttribute("lista",repository.findAllAlunos(Sort.by(Sort.Direction.DESC, "Id")));
+        model.addAttribute("lista",repository.findAll(Sort.by(Sort.Direction.DESC, "Id")));
         return "aluno/listagem";
     }
 

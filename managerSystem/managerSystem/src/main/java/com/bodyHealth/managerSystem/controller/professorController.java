@@ -16,10 +16,10 @@ public class professorController {
     private ProfessorRepository repository;
 
     @GetMapping("/cadastro")
-    public String getView(Long professorId, Model model) {
-        if(professorId != null)
+    public String getView(Long id, Model model) {
+        if(id != null)
         {
-            Professor professor = repository.getReferenceById(professorId);
+            Professor professor = repository.getReferenceById(id);
             model.addAttribute("professor",professor);
         }
 
